@@ -24,7 +24,7 @@ public class Runner {
 
                 // hasn't targeting cookie.
                 if (req.cookie("__mizuki_uid__") == null) {
-                    return (new Creative()).getFillerCreative(Jedis);
+                    return (new Creative(Jedis)).getFillerCreative();
                 }
 
                 // get re-targeting data.
