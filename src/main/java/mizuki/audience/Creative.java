@@ -8,13 +8,7 @@ class Creative {
     private String provider;
     private static Jedis jedis;
 
-    Creative(Jedis _jedis) {
-        jedis = _jedis;
-    }
-
-    String getFillerCreative() {
-        return jedis.get("filler");
-    }
+    Creative() {}
 
     public int getId() {
         return id;

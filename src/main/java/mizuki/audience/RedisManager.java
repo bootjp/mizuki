@@ -8,7 +8,7 @@ import redis.clients.jedis.exceptions.JedisException;
 class RedisManager {
 //    private final int REDIS_INDEX = Integer.parseInt(System.getenv("REDIS_INDEX"));
 //    private final String REDIS_HOST = System.getenv("REDIS_HOST");
-    JedisPool jedisPool;
+    private JedisPool jedisPool;
     private static final RedisManager redisManager = new RedisManager();
 
     private RedisManager() {
@@ -28,8 +28,8 @@ class RedisManager {
                 return jedisPool.getResource();
             }
         } catch (JedisException e) {
+            // @todo re-connect refactoring
             e.printStackTrace();
-            // 再接続処理
             GenericObjectPoolConfig JedisPoolConfig = new GenericObjectPoolConfig();
             JedisPoolConfig.setMaxIdle(200);
             JedisPoolConfig.setMinIdle(20);
