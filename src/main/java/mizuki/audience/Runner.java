@@ -15,9 +15,12 @@ public class Runner {
     private static final String RenderJsEnd = " })();";
     private static Jedis jedis;
     private static BufferedImage BUFFER_EMPTY_GIF;
+    static final String REDISHOST = System.getenv("REDIS_HOST");
 
     public static void main(String[] args) {
         try {
+            System.out.println(System.getenv("REDIS_HOST"));
+
             before((req, res) -> {
                 res.type("application/javascript");
                 if (req.cookie("__mizuki_uid_one_day__") == null) {
@@ -34,7 +37,10 @@ public class Runner {
                 switch (requestType) {
                 case "oneday":
                     if (req.cookie("__mizuki_uid_one_day__") == null) {
-                        res.redirect(System.getenv("URL_ONE_DAY_IMAGE"));
+                        if (jedis == null) {
+                            jedis = RedisManager.getInstance().getJedisResource();
+                        }
+                        res.redirect(jedis.get("URL_ONE_DAY_IMAGE"));
 
                         return res.raw();
                     }

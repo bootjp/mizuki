@@ -6,8 +6,8 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.exceptions.JedisException;
 
 class RedisManager {
-//    private final int REDIS_INDEX = Integer.parseInt(System.getenv("REDIS_INDEX"));
-//    private final String REDIS_HOST = System.getenv("REDIS_HOST");
+    private final int REDIS_INDEX = Integer.parseInt(System.getenv("REDIS_INDEX"));
+    private final String REDIS_HOST = System.getenv("REDIS_HOST");
     private JedisPool jedisPool;
     private static final RedisManager redisManager = new RedisManager();
 
@@ -15,7 +15,7 @@ class RedisManager {
         GenericObjectPoolConfig JedisPoolConfig = new GenericObjectPoolConfig();
         JedisPoolConfig.setMaxIdle(200);
         JedisPoolConfig.setMinIdle(20);
-        jedisPool = new JedisPool(JedisPoolConfig, "localhost");
+        jedisPool = new JedisPool(JedisPoolConfig, System.getenv("REDIS_HOST"));
     }
 
     static RedisManager getInstance() {
@@ -33,7 +33,7 @@ class RedisManager {
             GenericObjectPoolConfig JedisPoolConfig = new GenericObjectPoolConfig();
             JedisPoolConfig.setMaxIdle(200);
             JedisPoolConfig.setMinIdle(20);
-            this.jedisPool = new JedisPool(JedisPoolConfig, System.getenv("REDIS_HOST"));
+            this.jedisPool = new JedisPool(JedisPoolConfig, Runner.REDISHOST);
         } finally {
             return this.jedisPool.getResource();
         }

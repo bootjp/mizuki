@@ -3,7 +3,7 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.8
+//sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -16,23 +16,17 @@ dependencies {
 }
 
 buildscript {
+    ext.kotlin_version = '1.0.6'
+
     repositories {
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'eu.appsatori:audience-fatjar-plugin:0.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
-
 apply plugin: 'application'
-apply plugin: 'eu.appsatori.fatjar'
-mainClassName = 'mizuki.audience.Main'
 
+mainClassName = 'mizuki.audience.Runner'
 
-fatJar {
-    baseName = 'spark-sample'
-    manifest {
-        attributes('Main-Class': mainClassName)
-    }
-}
