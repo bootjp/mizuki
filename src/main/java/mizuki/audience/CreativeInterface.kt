@@ -1,7 +1,7 @@
 package mizuki.audience
 
 interface CreativeInterface {
-    val enableSyncRequest:Boolean
+    var enableSyncRequest:Boolean
     val enablePassback:Boolean
     val script:String
     val height:Int

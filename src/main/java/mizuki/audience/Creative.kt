@@ -12,5 +12,4 @@ class Creative() :CreativeInterface {
     override val height:Int = 0
     override val width:Int = 0
     override val Id:Long = 1L
-
 }
