@@ -1,4 +1,4 @@
-package mizuki.audience
+package me.bootjp.nagisa.audience
 
 import java.net.HttpCookie
 
