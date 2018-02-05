@@ -1,4 +1,4 @@
-# mizuki (work in progress)
+# nagisa (work in progress and holiday project)
 Fast ad optimization delivery server.
 
 Ad server optimization server project for end users
